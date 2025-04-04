@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react'; // Added useState
 import "../Components/Home.css";
 import logo from "../assets/logo.png";
 import { motion } from "framer-motion";
@@ -12,6 +12,14 @@ import img4 from "../assets/s4.png";
 import Stories from "./Stories";
 
 function Home() {
+  // Add state for mobile menu
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  // Toggle menu function
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   // Create refs for scroll sections
   const storiesRef = useRef(null);
   const capturesRef = useRef(null);
@@ -22,6 +30,8 @@ function Home() {
   const scrollToSection = (ref) => {
     if (ref && ref.current) {
       ref.current.scrollIntoView({ behavior: 'smooth' });
+      // Close menu after clicking a nav item on mobile
+      setIsMenuOpen(false);
     }
   };
 
@@ -140,6 +150,33 @@ function Home() {
     }
   };
 
+  // Add mobile menu button animation variants
+  const menuButtonVariants = {
+    open: {
+      transition: { duration: 0.3 }
+    },
+    closed: {
+      transition: { duration: 0.3 }
+    }
+  };
+
+  const menuBarVariants = {
+    open: (index) => {
+      const variants = [
+        { rotate: 45, y: 8, transition: { duration: 0.3 } }, // first bar
+        { opacity: 0, transition: { duration: 0.3 } },      // middle bar
+        { rotate: -45, y: -8, transition: { duration: 0.3 } } // last bar
+      ];
+      return variants[index];
+    },
+    closed: {
+      rotate: 0,
+      y: 0,
+      opacity: 1,
+      transition: { duration: 0.3 }
+    }
+  };
+
   // Section 2 animation variants
   const sectionVariants = {
     hidden: { opacity: 0, y: 50 },
@@ -160,9 +197,33 @@ function Home() {
           <img src={logo} alt="Logo" />
         </div>
         
+        {/* Mobile Menu Button */}
+        <motion.button
+          className="mobile-menu-btn"
+          onClick={toggleMenu}
+          variants={menuButtonVariants}
+          animate={isMenuOpen ? "open" : "closed"}
+        >
+          <motion.span 
+            variants={menuBarVariants}
+            custom={0}
+            animate={isMenuOpen ? "open" : "closed"}
+          ></motion.span>
+          <motion.span 
+            variants={menuBarVariants}
+            custom={1}
+            animate={isMenuOpen ? "open" : "closed"}
+          ></motion.span>
+          <motion.span 
+            variants={menuBarVariants}
+            custom={2}
+            animate={isMenuOpen ? "open" : "closed"}
+          ></motion.span>
+        </motion.button>
+        
         {/* Navigation Links */}
         <motion.ul 
-          className="navlists"
+          className={`navlists ${isMenuOpen ? 'open' : ''}`}
           variants={navListVariants}
           initial="hidden"
           animate="visible"

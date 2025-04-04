@@ -10,6 +10,9 @@
 html {
     scroll-behavior: smooth;
 }
+body {
+    padding-top: 80px;  /* Same as navbar height */
+}
 .navbar{
     height: 80px;
     width: 100%;
@@ -18,6 +21,11 @@ html {
     align-items: center;
     justify-content: space-between; /* Changed to space-between to push logo left and nav right */
     padding: 0 40px;
+    position: fixed;  /* Add this line */
+    top: 0;           /* Add this line */
+    left: 0;          /* Add this line */
+    z-index: 1000;    /* Add this line to ensure navbar stays above other content */
+    backdrop-filter: blur(5px);  /* Optional: adds a nice blur effect */
 }
 .logos{
     background-color: transparent;
@@ -27,8 +35,9 @@ html {
     justify-content: center;
 }
 .logos img{
+    margin-left: -10px;
     background-color: transparent;
-    height: 150px;
+    height: 160px;
 }
 
 /* Navigation styles */
@@ -91,6 +100,7 @@ html {
     align-items: center;
     flex-wrap: wrap; /* Allow elements to wrap on smaller screens */
     position: relative; /* For absolute positioning of button */
+    
 }
 .section1, .section2 {
     scroll-margin-top: 80px; /* Accounts for navbar height */
@@ -203,10 +213,10 @@ html {
 .cube-container::after {
     content: "";
     position: absolute;
-    bottom: -50px;
+    bottom: -60px;
     width: 220px;
     height: 30px;
-    background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.374) 0%, rgba(255,255,255,0) 70%);
+    background: radial-gradient(ellipse at center, rgba(252, 251, 251, 0.43) 0%, rgba(255,255,255,0) 70%);
     border-radius: 50%;
     z-index: -1;
     animation: shadowPulse 6s infinite linear;
@@ -223,7 +233,7 @@ html {
     width: 200px;
     height: 200px;
     position: relative;
-    cursor: pointer;
+    cursor: none;
     transform-style: preserve-3d;
     animation: rotateCube 6s infinite linear;
 }
@@ -257,6 +267,11 @@ html {
 @media screen and (max-width: 1024px) {
     .navbar {
         padding: 0 20px;
+        position: fixed;  /* Add this line */
+        top: 0;           /* Add this line */
+        left: 0;          /* Add this line */
+        z-index: 1000;    /* Add this line to ensure navbar stays above other content */
+        backdrop-filter: blur(5px);  /* Optional: adds a nice blur effect */
     }
     
     .navlists {
@@ -327,6 +342,11 @@ html {
 @media screen and (max-width: 768px) {
     .navbar {
         padding: 0 15px;
+        position: fixed;  /* Add this line */
+        top: 0;           /* Add this line */
+        left: 0;          /* Add this line */
+        z-index: 1000;    /* Add this line to ensure navbar stays above other content */
+        backdrop-filter: blur(5px);  /* Optional: adds a nice blur effect */
     }
     
     .navlists {
@@ -387,6 +407,11 @@ html {
         height: 60px;
         padding: 0 10px;
         position: relative;
+        position: fixed;  /* Add this line */
+        top: 0;           /* Add this line */
+        left: 0;          /* Add this line */
+        z-index: 1000;    /* Add this line to ensure navbar stays above other content */
+        backdrop-filter: blur(5px);  /* Optional: adds a nice blur effect */
     }
     
     .logos img {
