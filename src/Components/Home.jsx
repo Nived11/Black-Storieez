@@ -1,0 +1,261 @@
+import React, { useRef } from 'react';
+import "../Components/Home.css";
+import logo from "../assets/logo.png";
+import { motion } from "framer-motion";
+
+// Importing your images
+import img1 from "../assets/s1.png";
+import img2 from "../assets/s2.png";
+import img3 from "../assets/s3.png";
+import img4 from "../assets/s4.png";
+
+import Stories from "./Stories";
+
+function Home() {
+  // Create refs for scroll sections
+  const storiesRef = useRef(null);
+  const capturesRef = useRef(null);
+  const contactRef = useRef(null);
+  const aboutRef = useRef(null);
+
+  // Function to handle scroll to section
+  const scrollToSection = (ref) => {
+    if (ref && ref.current) {
+      ref.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  // Quote content
+  const quoteLine1 = "Every frame has a story";
+  const quoteLine2 = "we capture the soul behind every shot";
+  const author = "Black Storieez";
+
+  // Navigation items with corresponding refs
+  const navItems = [
+    { name: "Stories", ref: storiesRef },
+    { name: "Captures", ref: capturesRef },
+    { name: "Contact Us", ref: contactRef },
+    { name: "About Us", ref: aboutRef }
+  ];
+
+  // Refined animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { 
+        staggerChildren: 0.2,
+        duration: 0.5,
+        ease: "easeOut"
+      }
+    }
+  };
+
+  const lineVariants = {
+    hidden: { 
+      opacity: 0,
+      y: 10
+    },
+    visible: { 
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.6, 0.05, 0.01, 0.9]
+      }
+    }
+  };
+
+  const authorVariants = {
+    hidden: { 
+      opacity: 0,
+    },
+    visible: { 
+      opacity: 0.7,
+      transition: { 
+        delay: 1.6, 
+        duration: 1,
+        ease: "easeInOut"
+      }
+    }
+  };
+
+  const buttonVariants = {
+    hidden: { 
+      opacity: 0,
+      y: 20
+    },
+    visible: { 
+      opacity: 1,
+      y: 0,
+      transition: { 
+        delay: 2, 
+        duration: 0.8,
+        ease: "easeOut"
+      }
+    },
+    hover: {
+      scale: 1.05,
+      transition: {
+        duration: 0.3,
+        ease: "easeInOut"
+      }
+    }
+  };
+
+  // Navigation items animation variants
+  const navListVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2
+      }
+    }
+  };
+
+  const navItemVariants = {
+    hidden: { 
+      opacity: 0,
+      y: -10,
+      x: 20
+    },
+    visible: { 
+      opacity: 1,
+      y: 0,
+      x: 0,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut"
+      }
+    },
+    hover: {
+      scale: 1.1,
+      color: "#f5f5f5",
+      transition: {
+        duration: 0.2,
+        ease: "easeInOut"
+      }
+    }
+  };
+
+  // Section 2 animation variants
+  const sectionVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: "easeOut"
+      }
+    }
+  };
+
+  return (
+    <>
+      <nav className="navbar">
+        <div className="logos">
+          <img src={logo} alt="Logo" />
+        </div>
+        
+        {/* Navigation Links */}
+        <motion.ul 
+          className="navlists"
+          variants={navListVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          {navItems.map((item, index) => (
+            <motion.li 
+              key={index} 
+              className="navitem"
+              variants={navItemVariants}
+              whileHover="hover"
+              onClick={() => scrollToSection(item.ref)}
+            >
+              {item.name}
+            </motion.li>
+          ))}
+        </motion.ul>
+      </nav>
+      <div className="section1">
+        <div className="s1lft">
+          <motion.div 
+            className="quote-container"
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+          >
+            {/* First line of quote - animated as whole line */}
+            <motion.div
+              className="quote-line line1"
+              variants={lineVariants}
+            >
+              {quoteLine1}
+            </motion.div>
+            
+            {/* Second line of quote - animated as whole line */}
+            <motion.div
+              className="quote-line line2"
+              variants={lineVariants}
+            >
+              {quoteLine2}
+            </motion.div>
+            
+            {/* Author name */}
+            <motion.div
+              className="author"
+              variants={authorVariants}
+            >
+              {author}
+            </motion.div>
+          </motion.div>
+        </div>
+        <div className="s1rgt">
+          <div className="cube-container">
+            <div className="cube">
+              <div className="face front" style={{ backgroundImage: `url(${img1})` }}></div>
+              <div className="face back" style={{ backgroundImage: `url(${img2})` }}></div>
+              <div className="face left" style={{ backgroundImage: `url(${img3})` }}></div>
+              <div className="face right" style={{ backgroundImage: `url(${img4})` }}></div>
+              <div className="face top" style={{ backgroundImage: `url(${img2})` }}></div>
+              <div className="face bottom" style={{ backgroundImage: `url(${img1})` }}></div>
+            </div>
+          </div>
+        </div>
+        
+        {/* Book Events Button */}
+        <motion.button 
+          className="book-events-btn"
+          variants={buttonVariants}
+          initial="hidden"
+          animate="visible"
+          whileHover="hover"
+        >
+          Book Events
+        </motion.button>
+      </div>
+
+      {/* Section 2 - Stories */}
+      <motion.div 
+        className="section2" 
+        ref={storiesRef}
+        variants={sectionVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.3 }}
+      >
+        <Stories />
+      </motion.div>
+
+      {/* Empty placeholder sections for other nav items */}
+      <div className="section-captures" ref={capturesRef}></div>
+      <div className="section-contact" ref={contactRef}></div>
+      <div className="section-about" ref={aboutRef}></div>
+    </>
+  );
+}
+
+export default Home;

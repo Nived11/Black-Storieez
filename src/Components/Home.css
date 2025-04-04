@@ -1,0 +1,508 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: black;
+    scrollbar-width: none;
+}
+html {
+    scroll-behavior: smooth;
+}
+.navbar{
+    height: 80px;
+    width: 100%;
+    background-color: rgba(29, 29, 29, 0.058);
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Changed to space-between to push logo left and nav right */
+    padding: 0 40px;
+}
+.logos{
+    background-color: transparent;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.logos img{
+    background-color: transparent;
+    height: 150px;
+}
+
+/* Navigation styles */
+.navlists {
+    background-color: transparent;
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+.navitem {
+    background-color: transparent;
+    color: #a0a0a0;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+.navitem.active {
+    color: white;
+    position: relative;
+}
+.navitem.active::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: white;
+}
+.navitem::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: white;
+    transition: width 0.3s ease;
+}
+
+.navitem:hover {
+    color: white;
+}
+
+.navitem:hover::after {
+    width: 100%;
+}
+
+.section1{
+    height: 90vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap; /* Allow elements to wrap on smaller screens */
+    position: relative; /* For absolute positioning of button */
+}
+.section1, .section2 {
+    scroll-margin-top: 80px; /* Accounts for navbar height */
+}
+.section1 {
+    min-height: 90vh;
+}
+.s1lft{
+    height: 100%;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative; /* For positioning the button */
+}
+
+/* Refined quote styling with better typography */
+.quote-container {
+    background-color: transparent;
+    width: 90%;
+    color: white;
+    position: relative;
+    padding: 20px;
+    margin-left: 20px;
+    letter-spacing: 0.5px;
+}
+
+.quote-line {
+    background-color: transparent;
+    line-height: 1.4;
+    margin-bottom: 15px;
+    font-family: 'Playfair Display', serif;
+}
+
+.line1 {
+    color: #ffffff;
+    font-size: 2.4rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+}
+
+.line2 {
+    color: #e0e0e0;
+    font-size: 1.8rem;
+    font-weight: 400;
+    font-style: italic;
+    opacity: 0.9;
+    letter-spacing: 0.5px;
+}
+
+.author {
+    background-color: transparent;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.1rem;
+    text-align: right;
+    letter-spacing: 2px;
+    margin-top: 30px;
+    padding-right: 10px;
+    color: #a0a0a0;
+    font-weight: 300;
+    text-transform: uppercase;
+}
+
+/* Book Events Button Styling */
+.book-events-btn {
+    position: absolute;
+    bottom: 20%;
+    left: 10%;
+    transform: translateX(-50%);
+    background-color: transparent;
+    color: white;
+    border-radius: 50px;
+    border: 2px solid white;
+    padding: 12px 30px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.book-events-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.s1rgt{
+    height: 100%;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+}
+
+.cube-container {
+    background-color: transparent;
+    height: 300px;
+    width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1000px;
+    position: relative;
+}
+
+/* Ground shadow effect */
+.cube-container::after {
+    content: "";
+    position: absolute;
+    bottom: -50px;
+    width: 220px;
+    height: 30px;
+    background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.374) 0%, rgba(255,255,255,0) 70%);
+    border-radius: 50%;
+    z-index: -1;
+    animation: shadowPulse 6s infinite linear;
+}
+
+@keyframes shadowPulse {
+    0%, 100% { opacity: 0.5; transform: scaleX(1); }
+    25% { opacity: 0.3; transform: scaleX(0.9) translateX(-10px); }
+    50% { opacity: 0.2; transform: scaleX(0.8); }
+    75% { opacity: 0.3; transform: scaleX(0.9) translateX(10px); }
+}
+
+.cube {
+    width: 200px;
+    height: 200px;
+    position: relative;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    animation: rotateCube 6s infinite linear;
+}
+
+.face {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+}
+
+/* Positioning Cube Faces */
+.front  { transform: rotateY(  0deg) translateZ(100px); }
+.back   { transform: rotateY(180deg) translateZ(100px); }
+.left   { transform: rotateY(-90deg) translateZ(100px); }
+.right  { transform: rotateY( 90deg) translateZ(100px); }
+.top    { transform: rotateX( 90deg) translateZ(100px); }
+.bottom { transform: rotateX(-90deg) translateZ(100px); }
+
+/* Cube Rotation Animation */
+@keyframes rotateCube {
+    0%   { transform: rotateX(0deg) rotateY(0deg); }
+    25%  { transform: rotateX(30deg) rotateY(-90deg); }   /* Tilt Down */
+    50%  { transform: rotateX(60deg) rotateY(-180deg); }  /* More Tilt Down */
+    75%  { transform: rotateX(-30deg) rotateY(-270deg); } /* Tilt Up */
+    100% { transform: rotateX(0deg) rotateY(-360deg); }   /* Complete Smooth Rotation */
+}
+
+/* Media Queries for Responsive Design */
+@media screen and (max-width: 1024px) {
+    .navbar {
+        padding: 0 20px;
+    }
+    
+    .navlists {
+        gap: 20px;
+    }
+    
+    .navitem {
+        font-size: 0.9rem;
+    }
+    
+    .section1 {
+        flex-direction: column;
+        height: auto;
+        padding: 40px 0 100px 0; /* Add more padding at bottom for button */
+    }
+    
+    .s1lft, .s1rgt {
+        width: 100%;
+        height: auto;
+        padding: 20px 0;
+    }
+    
+    .quote-container {
+        width: 90%;
+        margin: 0 auto;
+        padding: 20px 10px;
+        text-align: center;
+    }
+    
+    .author {
+        text-align: center;
+        padding-right: 0;
+    }
+    
+    .book-events-btn {
+        bottom: -20px; /* Position below the cube */
+        left: 40%;
+        transform: translateX(-50%);
+    }
+    
+    .cube-container {
+        height: 250px;
+        width: 250px;
+    }
+    
+    .cube {
+        width: 180px;
+        height: 180px;
+    }
+    
+    .face {
+        width: 180px;
+        height: 180px;
+    }
+    
+    .front, .back, .left, .right, .top, .bottom {
+        transform-origin: center;
+    }
+    
+    .front  { transform: rotateY(  0deg) translateZ(90px); }
+    .back   { transform: rotateY(180deg) translateZ(90px); }
+    .left   { transform: rotateY(-90deg) translateZ(90px); }
+    .right  { transform: rotateY( 90deg) translateZ(90px); }
+    .top    { transform: rotateX( 90deg) translateZ(90px); }
+    .bottom { transform: rotateX(-90deg) translateZ(90px); }
+}
+
+@media screen and (max-width: 768px) {
+    .navbar {
+        padding: 0 15px;
+    }
+    
+    .navlists {
+        gap: 15px;
+    }
+    
+    .navitem {
+        font-size: 0.8rem;
+    }
+    
+    .line1 {
+        font-size: 2rem;
+    }
+    
+    .line2 {
+        font-size: 1.5rem;
+    }
+    
+    .author {
+        font-size: 1rem;
+    }
+    
+    .book-events-btn {
+        padding: 10px 25px;
+        left: 38%;
+        font-size: 0.9rem;
+    }
+    
+    .cube-container {
+        height: 220px;
+        width: 220px;
+    }
+    
+    .cube {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .face {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .front, .back, .left, .right, .top, .bottom {
+        transform-origin: center;
+    }
+    
+    .front  { transform: rotateY(  0deg) translateZ(75px); }
+    .back   { transform: rotateY(180deg) translateZ(75px); }
+    .left   { transform: rotateY(-90deg) translateZ(75px); }
+    .right  { transform: rotateY( 90deg) translateZ(75px); }
+    .top    { transform: rotateX( 90deg) translateZ(75px); }
+    .bottom { transform: rotateX(-90deg) translateZ(75px); }
+}
+
+@media screen and (max-width: 480px) {
+    .navbar {
+        height: 60px;
+        padding: 0 10px;
+        position: relative;
+    }
+    
+    .logos img {
+        height: 100px;
+    }
+    
+    /* Mobile menu styling */
+    .navlists {
+        position: absolute;
+        top: 60px;
+        right: 0;
+        flex-direction: column;
+        background-color: rgba(0, 0, 0, 0.9);
+        width: 100%;
+        padding: 20px 0;
+        gap: 20px;
+        text-align: center;
+        z-index: 100;
+    }
+    
+    .navitem {
+        padding: 10px 0;
+    }
+    
+    .line1 {
+        font-size: 1.6rem;
+        margin-bottom: 15px;
+    }
+    
+    .line2 {
+        font-size: 1.2rem;
+    }
+    
+    .author {
+        font-size: 0.9rem;
+        margin-top: 20px;
+    }
+    
+    .book-events-btn {
+        padding: 8px 20px;
+        font-size: 0.8rem;
+        bottom: 5px;
+        left: 30%;
+    }
+    
+    .cube-container {
+        height: 180px;
+        width: 180px;
+    }
+    
+    .cube {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .face {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .cube-container::after {
+        width: 150px;
+        height: 20px;
+    }
+    
+    .front  { transform: rotateY(  0deg) translateZ(60px); }
+    .back   { transform: rotateY(180deg) translateZ(60px); }
+    .left   { transform: rotateY(-90deg) translateZ(60px); }
+    .right  { transform: rotateY( 90deg) translateZ(60px); }
+    .top    { transform: rotateX( 90deg) translateZ(60px); }
+    .bottom { transform: rotateX(-90deg) translateZ(60px); }
+}
+.mobile-menu-btn {
+    display: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    position: relative;
+    z-index: 101;
+}
+
+.mobile-menu-btn span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: white;
+    margin: 6px 0;
+    transition: 0.4s;
+}
+
+@media screen and (max-width: 480px) {
+    .mobile-menu-btn {
+        display: block;
+    }
+    
+    .navlists {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.95);
+        padding: 20px 0;
+        z-index: 100;
+    }
+    
+    .navlists.open {
+        display: flex;
+    }
+    
+    .navitem {
+        padding: 15px 0;
+        text-align: center;
+        width: 100%;
+    }
+}
