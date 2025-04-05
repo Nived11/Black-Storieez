@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react'; // Added useState
 import "../Components/Home.css";
 import logo from "../assets/logo.png";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 // Importing your images
 import img1 from "../assets/s1.png";
@@ -43,10 +44,11 @@ function Home() {
   const author = "~Black Storieez";
 
   // Navigation items with corresponding refs
+  const topRef = useRef(null);
   const navItems = [
     { name: "Stories", ref: storiesRef },
     { name: "Captures", ref: capturesRef },
-    { name: "About Us", ref: aboutRef },
+    { name: "About Us",  link: "/about" },
     { name: "Contact Us", ref: contactRef }
   ];
 
@@ -195,9 +197,10 @@ function Home() {
   return (
     <>
       <nav className="navbar">
-        <div className="logos">
-          <img src={logo} alt="Logo" />
-        </div>
+        
+      <div className="logos" onClick={() => scrollToSection(topRef)} style={{ cursor: "pointer" }}>
+        <img src={logo} alt="Logo" />
+      </div>
         
         {/* Mobile Menu Button */}
         <motion.button
@@ -230,20 +233,29 @@ function Home() {
           initial="hidden"
           animate="visible"
         >
-          {navItems.map((item, index) => (
-            <motion.li 
-              key={index} 
-              className="navitem"
-              variants={navItemVariants}
-              whileHover="hover"
-              onClick={() => scrollToSection(item.ref)}
-            >
-              {item.name}
-            </motion.li>
-          ))}
+         {navItems.map((item, index) => (
+       <motion.li 
+        key={index} 
+        className="navitem"
+        variants={navItemVariants}
+        whileHover="hover"
+        onClick={() => {
+          if (item.ref) scrollToSection(item.ref);
+          if (isMenuOpen) setIsMenuOpen(false); // Close menu
+        }}
+          >
+            {item.link ? (
+              <Link to={item.link} style={{ textDecoration: 'none', color: 'inherit' }}>
+                {item.name}
+              </Link>
+            ) : (
+              item.name
+            )}
+          </motion.li>
+        ))}
         </motion.ul>
       </nav>
-      <div className="section1">
+      <div className="section1" ref={topRef}>
         <div className="s1lft">
           <motion.div 
             className="quote-container"
@@ -290,15 +302,17 @@ function Home() {
         </div>
         
         {/* Book Events Button */}
-        <motion.button 
-          className="book-events-btn"
-          variants={buttonVariants}
-          initial="hidden"
-          animate="visible"
-          whileHover="hover"
-        >
-          Book Events
-        </motion.button>
+        <Link to="/bookevents" >
+          <motion.button 
+            className="book-events-btn"
+            variants={buttonVariants}
+            initial="hidden"
+            animate="visible"
+            whileHover="hover"
+          >
+            Book Events
+          </motion.button>
+        </Link>
       </div>
 
       {/* Section 2 - Stories */}
@@ -335,7 +349,7 @@ function Home() {
 
       {/* Empty placeholder sections for other nav items */}
      
-      <div className="section-about" ref={aboutRef}></div>
+      {/* <div className="section-about" ref={aboutRef}></div> */}
     </>
   );
 }

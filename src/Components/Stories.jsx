@@ -2,17 +2,23 @@ import React, { useState, useRef, useEffect } from 'react';
 import { FaAngleLeft, FaAngleRight, FaVolumeMute, FaVolumeUp } from 'react-icons/fa';
 import "./Stories.css";
 import theyyam from "../assets/videos/theyyam.mp4";
+import theyyam2 from "../assets/videos/theyyam2.mp4";
+import beach from "../assets/videos/beach.mp4";
+import thlsry from "../assets/videos/thalassery.mp4";
+import alone from "../assets/videos/alone.mp4";
+import manj from "../assets/videos/manj.mp4";
+import bride from "../assets/videos/bride.mp4";
 
 function Stories() {
   // Sample video data - replace with your actual videos
   const [videos, setVideos] = useState([
     { id: 1, url: theyyam, title: "Video 1" },
-    { id: 2, url: "https://videos.pexels.com/video-files/4865389/4865389-sd_506_960_25fps.mp4", title: "Video 2" },
-    { id: 3, url: "https://videos.pexels.com/video-files/5532765/5532765-uhd_1440_2732_25fps.mp4", title: "Video 3" },
-    { id: 4, url: "https://videos.pexels.com/video-files/9116154/9116154-hd_1080_1920_25fps.mp4", title: "Video 4" },
-    { id: 5, url: "https://videos.pexels.com/video-files/5532765/5532765-uhd_1440_2732_25fps.mp4", title: "Video 5" },
-    { id: 6, url: "https://videos.pexels.com/video-files/5532765/5532765-uhd_1440_2732_25fps.mp4", title: "Video 6" },
-    { id: 7, url: "https://videos.pexels.com/video-files/5532765/5532765-uhd_1440_2732_25fps.mp4", title: "Video 7" },
+    { id: 2, url: thlsry , title: "Video 2" },
+    { id: 3, url: theyyam2 , title: "Video 3" },
+    { id: 4, url: beach, title: "Video 4" },
+    { id: 5, url: manj, title: "Video 5" },
+    { id: 6, url: bride, title: "Video 6" },
+    { id: 7, url: alone, title: "Video 7" },
   ]);
   
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);

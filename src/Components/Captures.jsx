@@ -59,8 +59,8 @@ function Captures() {
     <div className="section3">
       <div className="captures-header">
        
-        <h1 className="captures-title">CAPTURES</h1>
-        <FaCamera className="camera-icon" size={30} />
+        <h1 className="captures-title">MOMENTS</h1>
+        <FaCamera className="camera-icon" size={28} />
       </div>
 
       <div className="captures-gallery">
@@ -79,7 +79,7 @@ function Captures() {
       </div>
 
       <button className="view-more-btn">
-        View More <FaArrowRight   style={{  background: "transparent" }}/>
+        View More <FaArrowRight  />
       </button>
     </div>
   );

@@ -9,10 +9,10 @@ function Contact() {
         e.preventDefault();
       
         emailjs.sendForm(
-          'service_drazzcq',   // from EmailJS
-          'template_ih9mm56',  // from EmailJS
+          'nived11',   // from EmailJS
+          'template_z2m5b7f',  // from EmailJS
           e.target,
-          'sPEPWSoY_40EXtnmQ'    // from EmailJS account
+          '156D1ZevOJfFfZN3H'    // from EmailJS account
         ).then(
           (result) => {
             toast.success('Message sent successfully!', {
@@ -69,7 +69,7 @@ function Contact() {
               <FaInstagram className="social-icon" />
               <span >Instagram</span>
             </a>
-            <a href="mailto:your.email@example.com" className="social-link">
+            <a href="mailto:blackstorieez@gmail.com" className="social-link">
               <FaEnvelope className="social-icon" />
               <span >Email</span>
             </a>

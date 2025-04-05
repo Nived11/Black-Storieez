@@ -1,0 +1,155 @@
+.bookevents-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+    position: relative;
+    margin-top: -150px;
+  }
+  
+  .navigation {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 100;
+  }
+  
+  .home-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: white;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 8px 12px;
+    border-radius: 4px;
+  }
+  
+  .home-link:hover {
+    opacity: 0.8;
+    background-color: rgba(30, 30, 30, 0.8);
+  }
+  
+  .bookevents {
+    background-color: black;
+    color: white;
+    padding: 2rem;
+    max-width: 600px;
+    width: 100%;
+    margin: 0 auto;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .evlogo {
+    height: 150px;
+    object-fit: contain;
+  }
+  
+  .logo-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: -0.5rem;
+    
+  }
+  a{
+    text-decoration: none;
+  }
+  h1 {
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: 2rem;
+  }
+  
+  p {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 1rem;
+  }
+  
+  .booking-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  label {
+    font-weight: bold;
+    font-size: 0.9rem;
+  }
+  
+  input, select {
+    padding: 0.75rem;
+    border: 1px solid #333;
+    background-color: #111;
+    color: white;
+    border-radius: 4px;
+    font-size: 1rem;
+  }
+  
+  input:focus, select:focus {
+    outline: none;
+    border-color: white;
+  }
+  
+  .submit-btn {
+    background-color: white;
+    color: black;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    /* margin-top: 1rem; */
+  }
+  
+  .submit-btn:hover {
+    background-color: #ddd;
+  }
+  
+  /* Responsive styling */
+  @media (max-width: 768px) {
+    .bookevents {
+      padding: 1.5rem;
+    }
+    
+    h1 {
+      font-size: 1.75rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .bookevents {
+      padding: 1rem;
+    }
+    
+    h1 {
+      font-size: 1.5rem;
+    }
+    
+    input, select, .submit-btn {
+      padding: 0.6rem;
+    }
+  
+    .evlogo {
+      height: 120px;
+    }
+    
+    .navigation {
+      top: 10px;
+      left: 10px;
+    }
+    
+    .home-link {
+      padding: 6px 10px;
+    }
+  }
