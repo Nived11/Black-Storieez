@@ -10,6 +10,8 @@ import img3 from "../assets/s3.png";
 import img4 from "../assets/s4.png";
 
 import Stories from "./Stories";
+import Captures from "./Captures";
+import Contact from "./Contact";
 
 function Home() {
   // Add state for mobile menu
@@ -38,14 +40,14 @@ function Home() {
   // Quote content
   const quoteLine1 = "Every frame has a story";
   const quoteLine2 = "we capture the soul behind every shot";
-  const author = "Black Storieez";
+  const author = "~Black Storieez";
 
   // Navigation items with corresponding refs
   const navItems = [
     { name: "Stories", ref: storiesRef },
     { name: "Captures", ref: capturesRef },
-    { name: "Contact Us", ref: contactRef },
-    { name: "About Us", ref: aboutRef }
+    { name: "About Us", ref: aboutRef },
+    { name: "Contact Us", ref: contactRef }
   ];
 
   // Refined animation variants
@@ -310,10 +312,29 @@ function Home() {
       >
         <Stories />
       </motion.div>
+      <motion.div 
+        className="section-captures" 
+        ref={capturesRef}
+        variants={sectionVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.3 }}
+      >
+        <Captures />
+      </motion.div>
+      <motion.div 
+        className="section-contact" 
+        ref={contactRef}
+        variants={sectionVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.3 }}
+      >
+        <Contact />
+      </motion.div>
 
       {/* Empty placeholder sections for other nav items */}
-      <div className="section-captures" ref={capturesRef}></div>
-      <div className="section-contact" ref={contactRef}></div>
+     
       <div className="section-about" ref={aboutRef}></div>
     </>
   );
