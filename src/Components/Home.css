@@ -1,5 +1,6 @@
 /* @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap'); */
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comic+Relief:wght@400;700&display=swap');
 *{
     margin: 0;
     padding: 0;
@@ -133,13 +134,13 @@ body {
     background-color: transparent;
     line-height: 1.4;
     margin-bottom: 15px;
-    font-family: 'Cormorant Garamond', serif;
+    /* font-family: 'Cormorant Garamond', serif; */
 }
 
 .line1 {
     color: #ffffff;
     font-size: 2.4rem;
-    font-weight: 600;
+    font-weight: 00;
     letter-spacing: 1px;
     margin-bottom: 20px;
 }
@@ -148,7 +149,7 @@ body {
     color: #e0e0e0;
     font-size: 1.8rem;
     font-weight: 400;
-    font-style: italic;
+    /* font-style: italic; */
     opacity: 0.9;
     letter-spacing: 0.5px;
 }

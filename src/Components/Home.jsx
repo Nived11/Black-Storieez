@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'; // Added useState
+import React, { useRef, useState, useEffect } from 'react';
 import "../Components/Home.css";
 import logo from "../assets/logo.png";
 import { motion } from "framer-motion";
@@ -17,6 +17,7 @@ import Contact from "./Contact";
 function Home() {
   // Add state for mobile menu
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('');
 
   // Toggle menu function
   const toggleMenu = () => {
@@ -28,15 +29,60 @@ function Home() {
   const capturesRef = useRef(null);
   const contactRef = useRef(null);
   const aboutRef = useRef(null);
+  const topRef = useRef(null);
 
-  // Function to handle scroll to section
+  // Function to handle scroll to section with offset for navbar
   const scrollToSection = (ref) => {
     if (ref && ref.current) {
-      ref.current.scrollIntoView({ behavior: 'smooth' });
+      const yOffset = -80; // Height of your fixed navbar
+      const element = ref.current;
+      const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      
+      window.scrollTo({
+        top: y,
+        behavior: 'smooth'
+      });
+      
       // Close menu after clicking a nav item on mobile
       setIsMenuOpen(false);
     }
   };
+
+  // Add intersection observer to track active section
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.3,
+      rootMargin: '-80px 0px -50% 0px' // Account for navbar height
+    };
+
+    const observerCallback = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const sectionId = entry.target.getAttribute('data-section');
+          setActiveSection(sectionId);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    // Observe all sections
+    const sections = [
+      { ref: topRef, id: 'home' },
+      { ref: storiesRef, id: 'stories' },
+      { ref: capturesRef, id: 'captures' },
+      { ref: contactRef, id: 'contact' }
+    ];
+
+    sections.forEach(({ ref, id }) => {
+      if (ref.current) {
+        ref.current.setAttribute('data-section', id);
+        observer.observe(ref.current);
+      }
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   // Quote content
   const quoteLine1 = "Every frame has a story";
@@ -44,12 +90,11 @@ function Home() {
   const author = "~Black Storieez";
 
   // Navigation items with corresponding refs
-  const topRef = useRef(null);
   const navItems = [
-    { name: "Stories", ref: storiesRef },
-    { name: "Captures", ref: capturesRef },
-    { name: "About Us",  link: "/about" },
-    { name: "Contact Us", ref: contactRef }
+    { name: "Stories", ref: storiesRef, id: "stories" },
+    { name: "Captures", ref: capturesRef, id: "captures" },
+    { name: "About Us", link: "/about", id: "about" },
+    { name: "Contact Us", ref: contactRef, id: "contact" }
   ];
 
   // Refined animation variants
@@ -181,14 +226,14 @@ function Home() {
     }
   };
 
-  // Section 2 animation variants
+  // Section animation variants with better mobile support
   const sectionVariants = {
-    hidden: { opacity: 0, y: 50 },
+    hidden: { opacity: 0, y: 30 },
     visible: { 
       opacity: 1, 
       y: 0,
       transition: {
-        duration: 0.8,
+        duration: 0.6,
         ease: "easeOut"
       }
     }
@@ -197,10 +242,9 @@ function Home() {
   return (
     <>
       <nav className="navbar">
-        
-      <div className="logos" onClick={() => scrollToSection(topRef)} style={{ cursor: "pointer" }}>
-        <img src={logo} alt="Logo" />
-      </div>
+        <div className="logos" onClick={() => scrollToSection(topRef)} style={{ cursor: "pointer" }}>
+          <img src={logo} alt="Logo" />
+        </div>
         
         {/* Mobile Menu Button */}
         <motion.button
@@ -234,15 +278,15 @@ function Home() {
           animate="visible"
         >
          {navItems.map((item, index) => (
-       <motion.li 
-        key={index} 
-        className="navitem"
-        variants={navItemVariants}
-        whileHover="hover"
-        onClick={() => {
-          if (item.ref) scrollToSection(item.ref);
-          if (isMenuOpen) setIsMenuOpen(false); // Close menu
-        }}
+           <motion.li 
+            key={index} 
+            className={`navitem ${activeSection === item.id ? 'active' : ''}`}
+            variants={navItemVariants}
+            whileHover="hover"
+            onClick={() => {
+              if (item.ref) scrollToSection(item.ref);
+              if (isMenuOpen) setIsMenuOpen(false); // Close menu
+            }}
           >
             {item.link ? (
               <Link to={item.link} style={{ textDecoration: 'none', color: 'inherit' }}>
@@ -255,7 +299,8 @@ function Home() {
         ))}
         </motion.ul>
       </nav>
-      <div className="section1" ref={topRef}>
+      
+      <div className="section1" ref={topRef} data-section="home">
         <div className="s1lft">
           <motion.div 
             className="quote-container"
@@ -319,37 +364,38 @@ function Home() {
       <motion.div 
         className="section2" 
         ref={storiesRef}
+        data-section="stories"
         variants={sectionVariants}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: false, amount: 0.3 }}
+        viewport={{ once: false, amount: 0.2, margin: "0px 0px -100px 0px" }}
       >
         <Stories />
       </motion.div>
+      
       <motion.div 
         className="section-captures" 
         ref={capturesRef}
+        data-section="captures"
         variants={sectionVariants}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: false, amount: 0.3 }}
+        viewport={{ once: false, amount: 0.2, margin: "0px 0px -100px 0px" }}
       >
         <Captures />
       </motion.div>
+      
       <motion.div 
         className="section-contact" 
         ref={contactRef}
+        data-section="contact"
         variants={sectionVariants}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: false, amount: 0.3 }}
+        viewport={{ once: false, amount: 0.2, margin: "0px 0px -100px 0px" }}
       >
         <Contact />
       </motion.div>
-
-      {/* Empty placeholder sections for other nav items */}
-     
-      {/* <div className="section-about" ref={aboutRef}></div> */}
     </>
   );
 }
